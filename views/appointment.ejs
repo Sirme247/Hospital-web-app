@@ -1,0 +1,33 @@
+
+<form action="/submit-appointment" method="POST" id="appointmentForm">
+    <label for="fullName">Full Name:</label><br>
+    <input type="text" id="fullName" name="patientName" required><br>
+
+    <label for="age">Age:</label><br>
+    <input type="number" id="age" name="patientAge" min="0" required><br>
+
+    <label for="email">Email:</label><br>
+    <input type="email" id="email" name="patientEmail" required><br>
+
+    <label for="phone">Phone Number:</label><br>
+    <input type="tel" id="phone" name="patientPhoneNumber" pattern="[0-9]{10}" required><br>
+
+    <label for="appointmentDate">Appointment Date:</label><br>
+    <input type="date" id="appointmentDate" name="patientAppointmentDate" required><br>
+
+    <label for="title">Title:</label><br>
+    <select id="title" name="patientSpecialist" required>
+        <option value="">Select a title</option>
+        <option value="General Doctor">General Doctor</option>
+        <option value="Gynaecologist">Gynaecologist</option>
+        <option value="Racist">Racist</option>
+        <option value="Fighter">Fighter</option>
+        <option value="Cold">Cold</option>
+        <option value="Player">Player</option>
+    </select><br>
+
+    <label for="additionalInfo">Additional Information:</label><br>
+    <textarea id="additionalInfo" name="patientAdditionalInformation" rows="4" cols="50"></textarea><br>
+
+    <button type="submit" id="submitBtn">Book Appointment</button>
+</form>

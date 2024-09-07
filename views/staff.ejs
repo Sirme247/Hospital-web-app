@@ -1,0 +1,74 @@
+<style>
+    .bodyContents{
+ 
+  padding: 15px;
+}
+@media only screen and (max-width: 436px){
+  .bodyContents{
+    padding-left: 5px;
+    padding-right: 0%;
+  }
+}
+</style>
+
+<!-- Filter and Search Section -->
+<div class="bodyContents">
+    <form action="/staff" method="GET" id="filterForm">
+        <input type="search" aria-label="Search" id="searchInput" name="searchTerm" placeholder="Search for doctor ..." value="<%= searchTerm %>">
+        <select id="titleFilter" name="title">
+            <option value="">All fields</option>
+            <option value="Gynaecologist" <%= currentTitle === 'Gynaecologist' ? 'selected' : '' %>>Gynaecologist</option>
+            <option value="Racist" <%= currentTitle === 'Racist' ? 'selected' : '' %>>Racist</option>
+            <option value="Fighter" <%= currentTitle === 'Fighter' ? 'selected' : '' %>>Fighter</option>
+            <option value="Cold" <%= currentTitle === 'Cold' ? 'selected' : '' %>>Cold</option>
+            <option value="Player" <%= currentTitle === 'Player' ? 'selected' : '' %>>Player</option>
+            <!-- Add other options as needed -->
+        </select>
+        <button type="submit" id="filterButton">Search</button>
+    </form>
+    <div class="doctorContainer">
+        <% data.forEach((post, index) => { %>
+            <div class='doctor-ul'>
+                <div class="nameImageContainer">
+                    <div>
+                        <span><h3><%= post.doctorName %></h3></span><br>
+                        <a href="#">
+                            <span class="doctorTitle"><%= post.title %></span>
+                        </a><br><br>
+                    </div>
+                    <div class="doctorImageContainer">
+                        <img src="<%= post.doctorImage %>" alt="<%= post.doctorName %>'s image">
+                    </div>
+                </div>
+                <div class="ProfileAndBookAppointment">
+                    <button title="about" class="abButton" data-doctor-name="<%= post.doctorName %>" data-doctor-title="<%= post.title %>" data-doctor-body="<%= post.body %>" data-doctor-image="<%= post.doctorImage %>">
+                        About
+                    </button>
+                    <button>Book Appointment</button>
+                </div>
+            </div>
+        <% }) %>
+    </div>
+
+    <div class="popup" id="popup1">
+        <div class="overlay" onclick="poppup()"></div>
+        <div class="popupContent">
+            <div class="closeBtn" onclick="poppup()">&times;</div>
+            <div class="nameImageContainer-popup">
+                <div>
+                    <h2 id="popupName">Name</h2><br>
+                    <h3 id="popupTitle">Title</h3>
+                </div>
+                <div>
+                    <img id="popupImage" src="" alt="Doctor Image">
+                </div>
+            </div>
+            <p id="popupBody">Body content</p>
+        </div>
+    </div>
+
+    <div class="pagination">
+        <a href="<%= prevPage !== null ? '/staff?page=' + prevPage + '&title=' + currentTitle + '&searchTerm=' + searchTerm : '#' %>" class="pagination <%= prevPage === null ? 'disabled' : '' %>">&lt; Previous</a>
+        <a href="<%= nextPage !== null ? '/staff?page=' + nextPage + '&title=' + currentTitle + '&searchTerm=' + searchTerm : '#' %>" class="pagination <%= nextPage === null ? 'disabled' : '' %>">Next &gt;</a>
+    </div>
+</div>

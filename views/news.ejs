@@ -1,0 +1,24 @@
+<div style="text-align: center;margin-top: 40px;">
+  <h1>News and Events</h1>
+</div>
+
+<div class="background">
+    <div class="centering">
+      <div class="articles">
+        <% articles.forEach(article => { %>
+          <article>
+            <figure>
+              <img src="<%= article.img %>" alt="Preview">
+            </figure>
+            <div class="article-preview">
+              <h2><%= article.title %></h2>
+              <p>
+                <%= article.content.substring(0, 100) %>...
+                <a href="/article/<%= article.id %>" class="read-more">Read more</a>
+              </p>
+            </div>
+          </article>
+        <% }) %>
+      </div>
+    </div>
+  </div>
